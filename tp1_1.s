@@ -1,10 +1,14 @@
-main:
-	.text
-	addi a0, zero, 16       # Adicionando ao registrador a0 o número desejado (ex.: 31)
-	jal ra, paridade
-	jal zero, exit			# Depois que terminar a função, sair do programa
-paridade:
-	addi t0, zero, 2		# Adicionando ao registrador t0 o divisor 2
-	rem a0, a0, t0			# Adicionando ao registrador a0 (valor de retorno) o resto da divisão por 2
+## Parity
+# idea: remainder of division by 2. If 0 = even, if 1 = odd.
+.data
+	input:.word 16	# input data
+
+.text
+	lw a0, input	# arg. a0 receives data
+	jal ra, parity
+	jal zero, exit
+parity:
+	addi t0, zero, 2	# t0 = 2
+	rem a0, a0, t0	# a0 = a0 % 2
 	jalr zero, 0(ra)
 exit:
